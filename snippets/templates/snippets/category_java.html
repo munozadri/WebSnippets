@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-md-center" style="padding-top:20px;">
+     <div class="col-md-8">
+          <h1>JavaScript</h1>
+          <br>
+          {% for snippet in snippets %}       
+            <!-- SNIPPET -->
+            <div class="card">
+                <h5 class="card-header">{{snippet.name}}<a href="{% url 'snippets_user' %}"  class="float-right"><small>{{snippet.user.first_name}} {{snippet.user.last_name}}</small></a></h5>
+                <div class="card-body">                                    
+                    <h5 class="card-title">Lenguaje: {{snippet.languages}}</h5>                                    
+                    <h6 class="card-subtitle mb-2 text-muted">{{snippet.created}}</h6>
+                    <p class="card-text">{{snippet.description}}</p>
+                    <hr>                                        
+                </div>
+            </div>            
+        {% endfor %}      
+         
+         
+     </div>            
+</div>
+{% endblock %}

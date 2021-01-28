@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+  <div class="col-md-6">
+    <br>
+    {% if form.errors %}
+      <div class="alert alert-warning" role="alert">
+        Error al cargar
+      </div>
+      {% endif %}
+      <h1>Carga de Snippets</h1>
+
+    <form method="POST" action="" > 
+      {% csrf_token %}
+      {% if message %}
+        <div class="alert alert-success" role="alert">
+          Snippet cargado!!
+        </div>
+      {% endif %}    
+
+      {{ form|crispy }}
+      
+
+     <button type="submit" class="btn btn-primary">Cargar</button>
+    </form>
+{% endblock %}

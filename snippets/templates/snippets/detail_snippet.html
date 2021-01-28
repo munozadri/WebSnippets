@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+  <div class="col-md-8">
+    <br>
+    <div class="card">
+      <h5 class="card-header">{{snippets.name}}<a href="{% url 'snippets_user' %}"  class="float-right"><small>{{snippets.user.first_name}} {{snippets.user.last_name}}</small></a></h5>
+      <div class="card-body">
+        <h5 class="card-title">Lenguaje: {{snippets.language.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{snippets.created}}</h6>
+        <p class="card-text">{{snippets.description}}</p>
+        <div style="background-color:lightgray;border-radius: 5px;">
+          <!-- Código del Snippet -->
+          <samp>{{snippets.snippet}}</samp>
+          <!-- Código del Snippet -->
+        </div>
+        <hr>
+        <br>
+        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

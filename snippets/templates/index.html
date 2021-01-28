@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.email %}
+    <h2> Bienvenid@ {{user.first_name}} {{user.last_name}}</h2>
+    <p>Te identificaste con el email: {{user.email}}</p>
+{% else %}
+    <h2>¡Identificate para ver más información!</h2>
+    <p>{{user.email}}</p>
+{% endif%}
+    <div class="row justify-content-md-center" style="padding-top:20px;">
+        <div class="col-md-8">
+        <h1>Snippets</h1>
+        <br>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning">
+                    {{messages}}
+                </div>
+            {% endfor %}
+        {% endif %}    
+        
+           
+        {% for snippet in snippets %}       
+            <!-- SNIPPET -->
+            <div class="card">
+                <h5 class="card-header">{{snippet.name}}<a href="{% url 'snippets_user' %}"  class="float-right"><small>{{snippet.user.first_name}} {{snippet.user.last_name}}</small></a></h5>
+                <div class="card-body">                                    
+                    <h5 class="card-title">Lenguaje: {{snippet.languages}}</h5>                                    
+                    <h6 class="card-subtitle mb-2 text-muted">{{snippet.created}}</h6>
+                    <p class="card-text">{{snippet.description}}</p>
+                    <hr>
+                    <h4>Categorías Disponibles:</h4>                   
+                        <a href="{% url 'category_python' %}"><h5>Python</h5></a>
+                        <a href="{% url 'category_java' %}"><h5>JavaScript</h5></a>
+                        <a href="{% url 'category_c' %}"><h5>C++</h5></a>
+                        <a href="{% url 'category_html' %}"><h5>HTML</h5></a>                 
+                        <a href="{% url 'detail' snippet.id %}" class="btn btn-primary">Ver</a>                    
+                </div>
+            </div>            
+        {% endfor %}  
+        <!-- FIN SNIPPET -->      
+    </div>
+  
+{% endblock %}
